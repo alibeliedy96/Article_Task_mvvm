@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyTask</string>
+    <string name="ali_beliedy">Aly Beliedy</string>
+    <string name="date">31-5-2021</string>
+    <string name="title">this title for article</string>
+    <string name="overview">Overview</string>
+    <string name="description">description</string>
+
+</resources>
