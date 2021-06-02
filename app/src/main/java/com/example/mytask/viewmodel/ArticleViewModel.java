@@ -2,8 +2,6 @@ package com.example.mytask.viewmodel;
 
 
 import androidx.lifecycle.LiveData;
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.mytask.model.ArticleResponse;
