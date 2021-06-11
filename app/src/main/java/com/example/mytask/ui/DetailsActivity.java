@@ -8,7 +8,9 @@ import com.example.mytask.viewmodel.ArticleViewModel;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -18,6 +20,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView mDate;
     private TextView mTitle;
     private TextView mDescription;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +44,16 @@ public class DetailsActivity extends AppCompatActivity {
         mPublishedBy.setText(publishedBy);
         mDate.setText(date);
         mDescription.setText(description);
-        Glide.with(this).load(imageURL).into(mImage);
+
+
+        Glide.with(this).load(imageURL).placeholder(R.drawable.profile).into(mImage);
+
+
     }
 
  private void init()
  {
-
+     progressBar=findViewById(R.id.progress_bar);
      mImage = findViewById(R.id.image_details);
      mPublishedBy = findViewById(R.id.published_by_details);
      mDate = findViewById(R.id.date_details);

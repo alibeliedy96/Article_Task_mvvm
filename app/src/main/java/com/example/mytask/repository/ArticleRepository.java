@@ -33,6 +33,7 @@ public class ArticleRepository {
                if (response.body()!=null && response.isSuccessful())
                {
                    data.setValue(response.body());
+
                }
            }
 

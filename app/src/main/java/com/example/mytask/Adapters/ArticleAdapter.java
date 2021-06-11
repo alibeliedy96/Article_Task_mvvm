@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.mytask.R;
 import com.example.mytask.model.ArticlesItem;
+import com.example.mytask.model.MediaItem;
+import com.example.mytask.model.MediaMetadataItem;
 import com.example.mytask.ui.DetailsActivity;
 
 import java.util.List;
@@ -48,9 +50,26 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         viewHolder.date.setText(article.getPublishedDate());
         viewHolder.publishedBy.setText(article.getByline());
 
-        Glide.with(context)
-                .load(article.getMedia().get(0).getMediaMetadata().get(0).getUrl()).into(viewHolder.imageView);
 
+        String url="";
+        if (article.getMedia()!= null && article.getMedia().size()>0)
+        {
+
+            MediaItem mediaItem=article.getMedia().get(0);
+            if (mediaItem.getMediaMetadata() != null && mediaItem.getMediaMetadata().size()>0)
+            {
+
+                for (MediaMetadataItem media: mediaItem.getMediaMetadata()) {
+                    if (media.getFormat().equals("Standard Thumbnail")){
+                        url=media.getUrl();
+
+                    }
+                }
+            }
+
+        }
+        Glide.with(context)
+                .load(url).placeholder(R.drawable.profile).into(viewHolder.imageView);
         viewHolder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,7 +80,25 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
                 detailsActivityIntent.putExtra("description",article.getBriefSummary());
 
 
-                detailsActivityIntent.putExtra("imageURL",article.getMedia().get(0).getMediaMetadata().get(2).getUrl());
+                String url="";
+                if (article.getMedia()!= null && article.getMedia().size()>0)
+                {
+
+                    MediaItem mediaItem=article.getMedia().get(0);
+                    if (mediaItem.getMediaMetadata() != null && mediaItem.getMediaMetadata().size()>0)
+                    {
+
+                        for (MediaMetadataItem media: mediaItem.getMediaMetadata()) {
+                            if (media.getFormat().equals("mediumThreeByTwo440")){
+                                url=media.getUrl();
+
+                            }
+                        }
+                    }
+
+                }
+
+                detailsActivityIntent.putExtra("imageURL",url);
                 context.startActivity(detailsActivityIntent);
             }
         });

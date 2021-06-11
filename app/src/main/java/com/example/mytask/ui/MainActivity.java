@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
+
 import com.example.mytask.Adapters.ArticleAdapter;
 import com.example.mytask.R;
 import com.example.mytask.model.ArticlesItem;
